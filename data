@@ -1,0 +1,21 @@
+import os
+import shutil
+
+# Klasörlerin yollarını belirtin
+folders = ["A", "B", "C", "D"]  # A, B, C, D klasörleri
+destination = "data"  # Hedef klasör
+
+# Hedef klasörü oluştur
+if not os.path.exists(destination):
+    os.makedirs(destination)
+
+# Dosyaları birleştirme
+for folder in folders:
+    if os.path.exists(folder):
+        for filename in os.listdir(folder):
+            source_path = os.path.join(folder, filename)
+            destination_path = os.path.join(destination, filename)
+            if os.path.isfile(source_path):
+                shutil.move(source_path, destination_path)
+
+print("Dosyalar başarıyla birleştirildi!")
